@@ -5,7 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Auto_History extends Model
+class AutoHistory extends Model
 {
     use HasFactory;
 }

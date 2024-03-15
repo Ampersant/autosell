@@ -11,12 +11,10 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('auto__histories', function (Blueprint $table) {
+        Schema::create('fuels', function (Blueprint $table) {
             $table->id();
-            $table->string('mileage');
-            $table->unsignedSmallInteger('num_users');
-            $table->date('last_tech_insp');
-            $table->timestamps();
+            $table->string('type');
+
         });
     }
 
@@ -25,6 +23,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('auto__histories');
+        Schema::dropIfExists('fuels');
     }
 };

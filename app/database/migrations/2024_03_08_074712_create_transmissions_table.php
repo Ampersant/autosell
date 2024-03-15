@@ -11,10 +11,10 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('models', function (Blueprint $table) {
+        Schema::create('transmissions', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('mark_id')->constrained('marks');
-            $table->string('name');
+            $table->string('type');
+
         });
     }
 
@@ -23,6 +23,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('models');
+        Schema::dropIfExists('transmissions');
     }
 };
