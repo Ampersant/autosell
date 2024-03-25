@@ -21,26 +21,26 @@ class Auto extends Model
 
     public function mark(): HasOne 
     {
-        return $this->hasOne(Mark::class); 
+        return $this->hasOne(Mark::class, 'id', 'mark_id'); 
     }
     public function user(): HasOne 
     {
-        return $this->hasOne(User::class); 
+        return $this->hasOne(User::class, 'id', 'user_id'); 
     }
     public function markmodel(): HasOne 
     {
-        return $this->hasOne(MarkModel::class); 
+        return $this->hasOne(MarkModel::class, 'id', 'model_id'); 
     }
     public function type(): HasOne 
     {
-        return $this->hasOne(Type::class); 
+        return $this->hasOne(Type::class, 'id', 'type_id'); 
     }
     public function techdata(): HasOne 
     {
-        return $this->hasOne(TechData::class); 
+        return $this->hasOne(TechData::class, 'id', 'tech_data_id'); 
     }
     public function autohistory(): HasOne 
     {
-        return $this->hasOne(AutoHistory::class); 
+        return $this->hasOne(AutoHistory::class, 'id', 'auto_history_id'); 
     }
 }

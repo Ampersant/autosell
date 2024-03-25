@@ -8,6 +8,7 @@ use Illuminate\Database\Eloquent\Relations\HasOne;
 
 class TechData extends Model
 {
+    protected $table = 'tech_datas';
     use HasFactory;
     protected $fillable = [
         'year',
