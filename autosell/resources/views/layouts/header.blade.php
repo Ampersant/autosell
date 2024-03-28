@@ -1,4 +1,5 @@
 <header class="header">
+    @include('auth.login_register_modal')
     <nav class="navbar active navbar-expand-lg fixed-top py-3">
         <div class="container"><a href="#" class="navbar-brand text-uppercase font-weight-bold">Transparent Nav</a>
             <button type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation" class="navbar-toggler navbar-toggler-right"><i class="fa fa-bars"></i></button>
@@ -10,7 +11,14 @@
                     <li class="nav-item"><a href="#" class="nav-link text-uppercase font-weight-bold">Gallery</a></li>
                     <li class="nav-item"><a href="#" class="nav-link text-uppercase font-weight-bold">Portfolio</a></li>
                     <li class="nav-item"><a href="#" class="nav-link text-uppercase font-weight-bold">Contact</a></li>
+                    <li class="nav-item"></li>
+                    <li class="nav-item"></li>
                 </ul>
+                <div class="d-flex ms-auto order-5">
+                    <a class="btn btn-light" data-toggle="modal" href="javascript:void(0)" onclick="openLoginModal();">Log in</a>
+                    <a class="btn btn-light" data-toggle="modal" href="javascript:void(0)" onclick="openRegisterModal();">Register</a>
+                </div>
+
             </div>
         </div>
     </nav>
