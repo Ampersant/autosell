@@ -17,6 +17,12 @@ class ViewController extends Controller
         return view('index', compact('data'));
     }
     public function profile(){
-        return view('auth.profile');
+        return view('profile.profile');
+    }
+    public function register(){
+        return view('auth.register_page');
+    }
+    public function login(){
+        return view('auth.login_page');
     }
 }

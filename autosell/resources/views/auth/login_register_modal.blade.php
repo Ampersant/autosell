@@ -53,13 +53,19 @@
                              <div class="form">
                                 <form method="post" html="{:multipart=>true}" data-remote="true" action="{{ route('register') }}" accept-charset="UTF-8">
                                 <input id="email" class="form-control" type="text" placeholder="Email" name="email">
-                                
-                                <input type="text" name="" id="" placeholder="">
-                                <input type="text" name="" id="" placeholder="">
-                                
-                                <input type="text" name="name" id="name" placeholder="Name(optional)">
-                                <input type="text" name="surname" id="surname" placeholder="Surname(optional)">
-                                <input type="text" name="phone" id="phone" placeholder="Phone(optional)">
+                                <select id="acType" class="form-select mt-1 p-2">
+                                    <option selected>Type of account</option>
+                                </select>
+                                <div class="row mt-2">
+                                    <div class="col-md-6">
+                                        <input type="text" class="form-control" name="name" id="name" placeholder="Name(optional)">
+                                    </div>
+                                    <div class="col-md-6">
+                                     <input type="text" class="form-control" name="surname" id="surname" placeholder="Surname(optional)">
+                                    </div>
+
+                                </div>
+                                <input type="text" class="form-control" name="phone" id="phone" placeholder="Phone(optional)">
                                 <input id="password" class="form-control" type="password" placeholder="Password" name="password">
                                 <input id="password_confirmation" class="form-control" type="password" placeholder="Repeat Password" name="password_confirmation">
                                 
@@ -90,12 +96,17 @@
     // Функция для выполнения AJAX-запроса
     function fetchDataFromAPI() {
         $.ajax({
-            url: 'your_api_endpoint',
+            url: '/api/roles',
             type: 'GET',
             success: function(response) {
-                // Обновление содержимого страницы с полученными данными
-                $('#someElement').text(response.someData); // Пример обновления текста элемента с id="someElement" данными из API
-                // Другие действия с данными из API
+                var arr = JSON.parse(response);
+                const selectElement = document.getElementById('acType');
+                arr.forEach(element => {
+                    const option = document.createElement('option');
+                    option.value = element.id;
+                    option.text = element.name;
+                    selectElement.appendChild(option);
+                });
             },
             error: function(xhr, status, error) {
                 // Обработка ошибки
@@ -107,7 +118,6 @@
     // Вызываем функцию для выполнения запроса при загрузке страницы или при каком-либо событии
     fetchDataFromAPI();
 });
-
 </script>
 
 </body>
