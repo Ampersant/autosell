@@ -15,8 +15,16 @@
                     <li class="nav-item"></li>
                 </ul>
                 <div class="d-flex ms-auto order-5">
-                    <a class="btn btn-light" data-toggle="modal" href="javascript:void(0)" onclick="openLoginModal();">Log in</a>
-                    <a class="btn btn-light" data-toggle="modal" href="javascript:void(0)" onclick="openRegisterModal();">Register</a>
+                    
+                    @auth
+                    <a class="btn btn-light" href="{{ route('profile.index')}}">Profile</a>
+                    @endauth
+                    
+                    @guest
+                        <a class="btn btn-light" data-toggle="modal" href="javascript:void(0)" onclick="openLoginModal();">Log in</a>
+                        <a class="btn btn-light" data-toggle="modal" href="javascript:void(0)" onclick="openRegisterModal();">Register</a>    
+                    @endguest
+
                 </div>
 
             </div>
