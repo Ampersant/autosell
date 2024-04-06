@@ -9,20 +9,61 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
 
 </head>
 <body>
+  <aside class="sidebar">
+    <div class="toggle">
+      <a href="#" class="burger js-menu-toggle" data-toggle="collapse" data-target="#main-navbar">
+      <span></span>
+      </a>
+    </div>
+    <div class="side-inner">
+      <div class="profile">
+        <img src="https://bootdey.com/img/Content/avatar/avatar7.png" alt="Image" class="img-fluid">
+        <h3 class="name">Debby Williams</h3>
+        <span class="country">New York, USA</span>
+      </div>
+    <div class="counter d-flex justify-content-center">
+    
+      <div class="col">
+        <strong class="number">892</strong>
+        <span class="number-label">Posts</span>
+      </div>
+      <div class="col">
+        <strong class="number">22.5k</strong>
+        <span class="number-label">Followers</span>
+      </div>
+      <div class="col">
+        <strong class="number">150</strong>
+        <span class="number-label">Following</span>
+      </div>
+    
+    </div>
+    <div class="nav-menu">
+      <ul>
+        <li class="active"><a href="#"><i class="fa-solid fa-info"></i>Info</a></li>
+        <li><a href="#"><i class="fa-solid fa-table-columns"></i>Dashboard</a></li>
+        <li><a href="#"><i class="fa-regular fa-envelope"></i></span>Notifications</a></li>
+        <li><a href="#"><i class="fa-brands fa-adversal"></i>Make an advertisement for sale</a></li>
+        <li><a href="#"><i class="fa-regular fa-gear"></i>Settings</a></li>
+        <li><a href="{{ route('logout')}}"><span class="icon-sign-out mr-3"></span>Sign out</a></li>
+      </ul>
+    </div>
+    </div>
+    </aside>
     <div class="container">
         <div class="main-body">
         
               <!-- Breadcrumb -->
-              <nav aria-label="breadcrumb" class="main-breadcrumb">
+              {{-- <nav aria-label="breadcrumb" class="main-breadcrumb">
                 <ol class="breadcrumb">
                   <li class="breadcrumb-item"><a href="index.html">Home</a></li>
                   <li class="breadcrumb-item"><a href="javascript:void(0)">User</a></li>
                   <li class="breadcrumb-item active" aria-current="page">User Profile</li>
                 </ol>
-              </nav>
+              </nav> --}}
               <!-- /Breadcrumb -->
         
               <div class="row gutters-sm">
@@ -191,6 +232,44 @@
             </div>
         </div>
 </body>
+<script>
+  $(function() {
+
+  'use strict';
+
+  $('.js-menu-toggle').click(function(e) {
+
+    var $this = $(this);
+
+    
+
+    if ( $('body').hasClass('show-sidebar') ) {
+      $('body').removeClass('show-sidebar');
+      $this.removeClass('active');
+    } else {
+      $('body').addClass('show-sidebar');	
+      $this.addClass('active');
+    }
+
+    e.preventDefault();
+
+  });
+
+  // click outisde offcanvas
+  $(document).mouseup(function(e) {
+    var container = $(".sidebar");
+    if (!container.is(e.target) && container.has(e.target).length === 0) {
+      if ( $('body').hasClass('show-sidebar') ) {
+        $('body').removeClass('show-sidebar');
+        $('body').find('.js-menu-toggle').removeClass('active');
+      }
+    }
+  }); 
+
+  
+
+});
+</script>
 </html>
 
     
