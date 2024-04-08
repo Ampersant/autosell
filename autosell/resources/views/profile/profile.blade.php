@@ -13,46 +13,7 @@
 
 </head>
 <body>
-  <aside class="sidebar">
-    <div class="toggle">
-      <a href="#" class="burger js-menu-toggle" data-toggle="collapse" data-target="#main-navbar">
-      <span></span>
-      </a>
-    </div>
-    <div class="side-inner">
-      <div class="profile">
-        <img src="https://bootdey.com/img/Content/avatar/avatar7.png" alt="Image" class="img-fluid">
-        <h3 class="name">Debby Williams</h3>
-        <span class="country">New York, USA</span>
-      </div>
-    <div class="counter d-flex justify-content-center">
-    
-      <div class="col">
-        <strong class="number">892</strong>
-        <span class="number-label">Posts</span>
-      </div>
-      <div class="col">
-        <strong class="number">22.5k</strong>
-        <span class="number-label">Followers</span>
-      </div>
-      <div class="col">
-        <strong class="number">150</strong>
-        <span class="number-label">Following</span>
-      </div>
-    
-    </div>
-    <div class="nav-menu">
-      <ul>
-        <li class="active"><a href="#"><i class="fa-solid fa-info"></i>Info</a></li>
-        <li><a href="#"><i class="fa-solid fa-table-columns"></i>Dashboard</a></li>
-        <li><a href="#"><i class="fa-regular fa-envelope"></i></span>Notifications</a></li>
-        <li><a href="#"><i class="fa-brands fa-adversal"></i>Make an advertisement for sale</a></li>
-        <li><a href="#"><i class="fa-regular fa-gear"></i>Settings</a></li>
-        <li><a href="{{ route('logout')}}"><span class="icon-sign-out mr-3"></span>Sign out</a></li>
-      </ul>
-    </div>
-    </div>
-    </aside>
+ @include('profile.sidebar')
     <div class="container">
         <div class="main-body">
         
