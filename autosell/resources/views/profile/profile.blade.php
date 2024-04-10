@@ -5,7 +5,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Profile</title>
-    <link rel="stylesheet" href="{{ asset('css/profile.css')}}">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
@@ -193,44 +192,7 @@
             </div>
         </div>
 </body>
-<script>
-  $(function() {
 
-  'use strict';
-
-  $('.js-menu-toggle').click(function(e) {
-
-    var $this = $(this);
-
-    
-
-    if ( $('body').hasClass('show-sidebar') ) {
-      $('body').removeClass('show-sidebar');
-      $this.removeClass('active');
-    } else {
-      $('body').addClass('show-sidebar');	
-      $this.addClass('active');
-    }
-
-    e.preventDefault();
-
-  });
-
-  // click outisde offcanvas
-  $(document).mouseup(function(e) {
-    var container = $(".sidebar");
-    if (!container.is(e.target) && container.has(e.target).length === 0) {
-      if ( $('body').hasClass('show-sidebar') ) {
-        $('body').removeClass('show-sidebar');
-        $('body').find('.js-menu-toggle').removeClass('active');
-      }
-    }
-  }); 
-
-  
-
-});
-</script>
 </html>
 
     

@@ -12,4 +12,6 @@ Route::get('/profile', [ViewController::class, 'profile'])->name('profile.index'
 Route::get('/register', [ViewController::class, 'register'])->name('register.show');
 Route::get('/login', [ViewController::class, 'login'])->name('login.show');
 
+Route::get('/dashboard', [ViewController::class, 'dashboard'])->name('dashboard.show');
+Route::get('/form', [ViewController::class, 'adform'])->name('ad.form.show');
 require __DIR__.'/auth.php';
