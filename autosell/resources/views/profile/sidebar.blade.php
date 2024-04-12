@@ -1,7 +1,7 @@
 <link rel="stylesheet" href="{{ asset('css/sidebar.css')}}">
 
 <aside class="sidebar">
-    <div class="toggle">
+    <div class="toggle p-3">
       <a href="#" class="burger js-menu-toggle" data-toggle="collapse" data-target="#main-navbar">
       <span></span>
       </a>

@@ -29,7 +29,9 @@ class ViewController extends Controller
         return view('profile.dashboard', ['active_link' => 'dashboard']);
     }
     public function adform(){
-        return view('profile.advertisement_form', ['active_link' => 'adform']);
+        $marks = Mark::all();
+        return view('profile.advertisement_form', ['active_link' => 'adform', 
+                                                    'marks' => $marks]);
     }
    
 }
