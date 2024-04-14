@@ -1048,15 +1048,15 @@ details summary::-webkit-details-marker {
 
 @keyframes slideInFromRight {
   0% {
-    transform: translateX(200%);
+    transform: translateX(300%);
   }
   100% {
     transform: translateX(0);
   }
 }
-@keyframes slideOutFromLeft {
+@keyframes slideInFromLeft {
   0% {
-    transform: translateX(-200%);
+    transform: translateX(-300%);
   }
   100% {
     transform: translateX(0);
@@ -1068,7 +1068,7 @@ details summary::-webkit-details-marker {
     transform: translateX(0);
   }
   100% {
-    transform: translateX(-200%);
+    transform: translateX(-300%);
   }
 }
 @keyframes slideOutToRight {
@@ -1076,7 +1076,7 @@ details summary::-webkit-details-marker {
     transform: translateX(0);
   }
   100% {
-    transform: translateX(200%);
+    transform: translateX(300%);
   }
 }
 

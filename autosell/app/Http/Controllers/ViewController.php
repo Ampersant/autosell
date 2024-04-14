@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Resources\AutoResource;
 use App\Models\Auto;
+use App\Models\Fuel;
 use App\Models\Mark;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -30,8 +31,10 @@ class ViewController extends Controller
     }
     public function adform(){
         $marks = Mark::all();
+        $fuels = Fuel::all();
         return view('profile.advertisement_form', ['active_link' => 'adform', 
-                                                    'marks' => $marks]);
+                                                    'marks' => $marks,
+                                                    'fuels' => $fuels]);
     }
    
 }

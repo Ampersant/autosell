@@ -47,19 +47,14 @@
               <div class="nice-form-group">
                 <label>State</label>
                 <input type="range" min="0" max="6" />
-              </div>
+              </div><br>
+              <h6>Choose type of fuel: </h6>
+              @foreach ($fuels as $fuel)
               <div class="nice-form-group">
-                <input type="checkbox" id="check-3" class="switch" />
-                <label for="check-3">Switch with label</label>
+                <input type="checkbox" id="check-3" value="{{$fuel->id}}" class="switch" />
+                <label for="check-3">{{$fuel->type}}</label>
               </div>
-            
-              <div class="nice-form-group">
-                <input type="checkbox" id="check-4" class="switch"/>
-                <label for="check-4">
-                  Switch with label
-                  <small>I am additional information regarding this field</small>
-                </label>
-              </div>
+              @endforeach
               <div class="row">
                   <div class="col-md-6">
                   <button type="button" id="backTo1" class="mt-2 button-28">Back</button>
@@ -68,22 +63,21 @@
                   <button type="button" id="goto3" class="mt-2 button-28">Next 2/3</button>
                 </div>
               </div>
-
-          <div id="form3" class="container col-md-5 hidden">
-            <div class="nice-form-group">
-              <input type="checkbox" id="check-4" class="switch"/>
-              <label for="check-4">
-                Switch with label
-                <small>I am additional information regarding this field</small>
-              </label>
+        </div>
+        <div id="form3" class="container col-md-5 hidden">
+          <div class="nice-form-group">
+            <input type="checkbox" id="check-4" class="switch"/>
+            <label for="check-4">
+              Switch with label
+              <small>I am additional information regarding this field</small>
+            </label>
+          </div>
+          <div class="row">
+            <div class="col-md-6">
+              <button type="button" id="backTo2" class="mt-2 button-28">Back</button>
             </div>
-            <div class="row">
-              <div class="col-md-6">
-                <button type="button" id="backTo2" class="mt-2 button-28">Back</button>
-              </div>
-              <div class="col-md-6">
-                <input type="submit" id="submitForm" class="mt-2 button-28">Submit</button>
-              </div>
+            <div class="col-md-6">
+              <input type="submit" id="submitForm" class="mt-2 button-28">Submit</button>
             </div>
           </div>
         </div>
