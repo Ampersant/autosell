@@ -32,9 +32,9 @@
       <ul>
         {{-- profile --}}
         @if ($active_link == 'profile')
-          <li class="active"><a href="{{route('profile.index')}}"><i class="fa-solid fa-info"></i> Profile</a></li>        
+          <li class="active"><a href="{{ route('profile.index')}}"><i class="fa-solid fa-info"></i> Profile</a></li>        
         @else
-          <li><a href="#"><i class="fa-solid fa-info"></i> Info</a></li>
+          <li><a href="{{ route('profile.index')}}"><i class="fa-solid fa-info"></i> Profile</a></li>
         @endif
         {{-- dashboard  --}}
         @if ($active_link == 'dashboard')

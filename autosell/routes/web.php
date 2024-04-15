@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AutoController;
 use App\Http\Controllers\ViewController;
 use App\Http\Controllers\AuthViewController;
 use Illuminate\Support\Facades\Route;
@@ -13,5 +14,6 @@ Route::get('/register', [ViewController::class, 'register'])->name('register.sho
 Route::get('/login', [ViewController::class, 'login'])->name('login.show');
 
 Route::get('/dashboard', [ViewController::class, 'dashboard'])->name('dashboard.show');
-Route::get('/form', [ViewController::class, 'adform'])->name('ad.form.show');
+Route::get('/adform', [ViewController::class, 'adform'])->name('ad.form.show');
+Route::post('/adformstore', [AutoController::class, 'adform_store'])->name('ad.form.store');
 require __DIR__.'/auth.php';

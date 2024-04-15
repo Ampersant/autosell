@@ -6,13 +6,14 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\HasOne;
 
+
 class TechData extends Model
 {
     protected $table = 'tech_datas';
     use HasFactory;
     protected $fillable = [
         'year',
-        'state',
+        'state_id',
         'consumption',
         'form_id',
         'transmission_id',
@@ -25,6 +26,10 @@ class TechData extends Model
     public function transmission(): HasOne
     {
         return $this->hasOne(Transmission::class);
+    }
+    public function state(): HasOne
+    {
+        return $this->hasOne(State::class);
     }
     public function fuel(): HasOne
     {

@@ -10,20 +10,27 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
     <script src="{{ asset('js/adform/nextform.js') }}"></script>
-    
     <script src="{{ asset('js/adform/getmodel.js') }}"></script>
-
+    <script src="{{ asset('js/adform/staterange.js') }}"></script>
+    <script src="{{ asset('js/adform/fuelcons.js') }}"></script>
+    {{-- <script src="{{ asset('js/adform/preview.js') }}"></script> --}}
+    <style>img {
+      display: block;
+      max-width: 50%;
+      height: auto;
+    }</style>
     <title>Document</title>
 </head>
 <body>
     @include('profile.sidebar')
     
-        <form action="" method="post">
-          <div class="card" style="background-color:rgb(240, 240, 240);height: 80vh; width: 50%; align-content: center; margin: auto; overflow:hidden">
-          <div id="form1" class="container col-md-5">
+        <form action="{{route('ad.form.store')}}" method="post" enctype="multipart/form-data">
+          @csrf
+          <div id="card" class="card" style="background-color:rgb(240, 240, 240); height: 80vh; width: 50%; align-content: center; margin: auto; overflow: auto; position: relative; display: flex; justify-content: center; align-items:center;">
+          <div id="form1" class="container col-md-5" style="position: absolute;">
             <div class="nice-form-group">
               <label>Mark</label>
-              <select id="mark">
+              <select id="mark" name="mark">
                 <option value="null">Please select a mark</option>
                 @foreach ($marks as $item)
                     <option value="{{ $item->id }}">{{ $item->name }}</option>
@@ -32,27 +39,38 @@
             </div>
             <div class="nice-form-group">
               <label>Model</label>
-              <select id="model" disabled>
+              <select id="model" name="model" disabled>
                 <option selected>Please select a model</option>
               </select>
             </div>
             <div class="nice-form-group">
               <label>Description</label>
-              <textarea rows="5" placeholder="Write a description about Your auto." value=""></textarea>
+              <textarea name="description" rows="5" placeholder="Write a description about Your auto." value=""></textarea>
             </div>
             <button type="button" id="goto2" class="mt-2 button-28">Next 1/3</button>
+            @if ($errors->any())
+              <div class="alert alert-danger">
+                  <ul>
+                      @foreach ($errors->all() as $error)
+                          <li>{{ $error }}</li>
+                      @endforeach
+                  </ul>
+              </div>
+            @endif
           </div>
 
-            <div id="form2" class="container col-md-5 hidden">
+            <div id="form2" class="container col-md-5 hidden"  style="position: absolute;">
               <div class="nice-form-group">
                 <label>State</label>
-                <input type="range" min="0" max="6" />
+                <h6 id="output">There you will see selected state</h6>
+                <input name="state" type="range" min="0" max="6" onchange="updateParagraph(this.value)"/>
               </div><br>
               <h6>Choose type of fuel: </h6>
               @foreach ($fuels as $fuel)
               <div class="nice-form-group">
-                <input type="checkbox" id="check-3" value="{{$fuel->id}}" class="switch" />
-                <label for="check-3">{{$fuel->type}}</label>
+                <input name="fueltype[]" type="checkbox" id="check-{{$fuel->id}}" value="{{$fuel->id}}" class="switch" onchange="toggleInput(this)"/>
+                <label for="check-{{$fuel->id}}">{{$fuel->type}}</label>
+                <input name="fuelconsumption[]" type="text" id="input-{{$fuel->id}}" class="mt-2" style="display: none;" placeholder="Input the consumption per 100 km">
               </div>
               @endforeach
               <div class="row">
@@ -64,23 +82,59 @@
                 </div>
               </div>
         </div>
-        <div id="form3" class="container col-md-5 hidden">
+        <div id="form3" class="container col-md-5 hidden" style="position: absolute;">
           <div class="nice-form-group">
-            <input type="checkbox" id="check-4" class="switch"/>
-            <label for="check-4">
-              Switch with label
-              <small>I am additional information regarding this field</small>
-            </label>
+            <div class="nice-form-group">
+              <label>Mileage</label>
+              <input name="mileage" type="text" placeholder="1999" value="" />
+            </div>
+            <div class="nice-form-group">
+              <label>Number of users</label>
+              <input name="numusr" type="text" placeholder="1" value="" />
+            </div>
+            <div class="nice-form-group">
+              <label>Date of last tachnical inspectation</label>
+              <input name="date" type="date" value="2018-07-22" />
+            </div>
+            <div class="nice-form-group">
+              <label>Image upload</label>
+              <input id="fileInput" name="image[]" type="file" multiple />
+            </div>
+            <div class="row" id="preview"></div>
           </div>
           <div class="row">
             <div class="col-md-6">
               <button type="button" id="backTo2" class="mt-2 button-28">Back</button>
             </div>
             <div class="col-md-6">
-              <input type="submit" id="submitForm" class="mt-2 button-28">Submit</button>
+              <input type="submit" id="submitForm" class="mt-2 button-28" >
             </div>
           </div>
         </div>
       </form>
+      <script>
+        document.getElementById('fileInput').addEventListener('change', function(event) {
+    const preview = document.getElementById('preview');
+    preview.innerHTML = '';
+    
+    const files = event.target.files;
+    for (let i = 0; i < files.length; i++) {
+      const file = files[i];
+      const reader = new FileReader();
+      
+      reader.onload = function(e) {
+        const previewItem = document.createElement('div');
+        previewItem.classList.add('col-md-6');
+        const img = document.createElement('img');
+        img.classList.add('preview-img');
+        img.src = e.target.result;
+        previewItem.appendChild(img);
+        preview.appendChild(previewItem);
+      }
+      
+      reader.readAsDataURL(file);
+    }
+  });
+      </script>
 </body>
 </html>
