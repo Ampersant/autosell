@@ -4,6 +4,8 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Relations\HasOne;
 
 
@@ -31,8 +33,9 @@ class TechData extends Model
     {
         return $this->hasOne(State::class);
     }
-    public function fuel(): HasOne
+    public function fuel(): BelongsToMany
     {
-        return $this->hasOne(Fuel::class);
+        return $this->belongsToMany(Fuel::class, 'techdatas_fuels', 'techd_id', 'fuel_id');
     }
+
 }

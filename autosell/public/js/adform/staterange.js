@@ -4,25 +4,25 @@ function updateParagraph(value) {
 
     // Определите текст в соответствии с значением ползунка
     switch(value) {
-        case "0":
+        case "1":
             text = "After accident";
             break;
-        case "1":
+        case "2":
             text = "Poor";
             break;
-        case "2":
+        case "3":
             text = "Not good";
             break;
-        case "3":
+        case "4":
             text = "Ok";
             break;
-        case "4":
+        case "5":
             text = "Normal";
             break;
-        case "5":
+        case "6":
             text = "Good";
             break;
-        case "6":
+        case "7":
             text = "New";
             break;
         default:

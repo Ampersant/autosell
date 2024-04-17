@@ -16,4 +16,12 @@ class Type extends Model
     {
         return $this->hasMany(TechData::class);
     }
+    public function marks(): HasMany
+    {
+        return $this->hasMany(Mark::class);
+    }
+    public function forms(): HasMany
+    {
+        return $this->hasMany(Form::class);
+    }
 }

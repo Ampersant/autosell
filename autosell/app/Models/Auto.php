@@ -43,4 +43,5 @@ class Auto extends Model
     {
         return $this->hasOne(AutoHistory::class, 'id', 'auto_history_id'); 
     }
+    
 }

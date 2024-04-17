@@ -5,8 +5,9 @@ namespace App\Http\Controllers;
 use App\Http\Resources\AutoResource;
 use App\Models\Auto;
 use App\Models\Fuel;
-use App\Models\Mark;
+use App\Models\Type;
 use App\Models\State;
+use App\Models\Transmission;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -31,12 +32,14 @@ class ViewController extends Controller
         return view('profile.dashboard', ['active_link' => 'dashboard']);
     }
     public function adform(){
-        $marks = Mark::all();
+        $types = Type::all();
         $fuels = Fuel::all();
         $states = State::all();
+        $transmissions = Transmission::all();
         return view('profile.advertisement_form', ['active_link' => 'adform', 
-                                                    'marks' => $marks,
+                                                    'types' => $types,
                                                     'states' => $states,
+                                                    'transmissions' => $transmissions,
                                                     'fuels' => $fuels]);
     }
    

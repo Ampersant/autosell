@@ -26,21 +26,27 @@
     
         <form action="{{route('ad.form.store')}}" method="post" enctype="multipart/form-data">
           @csrf
-          <div id="card" class="card" style="background-color:rgb(240, 240, 240); height: 80vh; width: 50%; align-content: center; margin: auto; overflow: auto; position: relative; display: flex; justify-content: center; align-items:center;">
+          <div id="card" class="content" style="background-color:rgb(240, 240, 240); height: 80vh; width: 50%; align-content: center; margin: auto; overflow: auto; position: relative; display: flex; justify-content: center; align-items:center;">
           <div id="form1" class="container col-md-5" style="position: absolute;">
             <div class="nice-form-group">
-              <label>Mark</label>
-              <select id="mark" name="mark">
-                <option value="null">Please select a mark</option>
-                @foreach ($marks as $item)
+              <label>Type</label>
+              <select id="type" name="type">
+                <option value="null">Please select a type</option>
+                @foreach ($types as $item)
                     <option value="{{ $item->id }}">{{ $item->name }}</option>
                 @endforeach
               </select>
             </div>
             <div class="nice-form-group">
+              <label>Mark</label>
+              <select id="mark" name="mark" disabled>
+                <option selected value="null">Please select a type first</option>
+              </select>
+            </div>
+            <div class="nice-form-group">
               <label>Model</label>
               <select id="model" name="model" disabled>
-                <option selected>Please select a model</option>
+                <option selected>Please select a mark first</option>
               </select>
             </div>
             <div class="nice-form-group">
@@ -61,9 +67,24 @@
 
             <div id="form2" class="container col-md-5 hidden"  style="position: absolute;">
               <div class="nice-form-group">
+                <label>Form</label>
+                <select id="form" name="form" disabled>
+                  <option selected>Please select a type first</option>
+                </select>
+              </div>
+              <div class="nice-form-group">
+                <label>Transmission</label>
+                <select id="transmission" name="transmission">
+                  <option selected>Please select a transmission</option>
+                  @foreach ($transmissions as $item)
+                    <option value="{{$item->id}}">{{$item->type}}</option>
+                  @endforeach
+                </select>
+              </div>
+              <div class="nice-form-group">
                 <label>State</label>
                 <h6 id="output">There you will see selected state</h6>
-                <input name="state" type="range" min="0" max="6" onchange="updateParagraph(this.value)"/>
+                <input name="state" type="range" min="{{$states->first()->id;}}" max="{{$states->last()->id;}}" onchange="updateParagraph(this.value)"/>
               </div><br>
               <h6>Choose type of fuel: </h6>
               @foreach ($fuels as $fuel)
@@ -85,12 +106,16 @@
         <div id="form3" class="container col-md-5 hidden" style="position: absolute;">
           <div class="nice-form-group">
             <div class="nice-form-group">
+              <label>Year of production</label>
+              <input name="year" type="text" class="form-control" placeholder="4 digits" value="" />
+            </div>
+            <div class="nice-form-group">
               <label>Mileage</label>
-              <input name="mileage" type="text" placeholder="1999" value="" />
+              <input name="mileage" type="text" placeholder="Enter the number of km" value="" />
             </div>
             <div class="nice-form-group">
               <label>Number of users</label>
-              <input name="numusr" type="text" placeholder="1" value="" />
+              <input name="numusr" type="text" placeholder="Enter the number of users" value="" />
             </div>
             <div class="nice-form-group">
               <label>Date of last tachnical inspectation</label>
