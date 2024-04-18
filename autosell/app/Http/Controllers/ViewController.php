@@ -15,8 +15,8 @@ class ViewController extends Controller
 {
     public function index(){
         // dd(Auth::check());
-        $data['autos'] = Auto::with(['mark', 'user', 'markmodel', 'type', 'techdata', 'autohistory'])->get();
-        // dd($data);
+        $data['autos'] = Auto::with(['mark', 'user', 'markmodel', 'type', 'techdata', 'autohistory', 'image'])->get();
+
         return view('index', compact('data'));
     }
     public function register(){
@@ -41,6 +41,14 @@ class ViewController extends Controller
                                                     'states' => $states,
                                                     'transmissions' => $transmissions,
                                                     'fuels' => $fuels]);
+    }
+    public function singleitem($id){
+        $item = Auto::find($id)
+        ->with('mark', 'user', 'markmodel', 'type', 'techdata', 'autohistory', 'image')
+        ->get();
+        $item = $item->first();
+
+        return view('singleitem', ['item' => $item]);
     }
    
 }

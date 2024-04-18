@@ -53,6 +53,10 @@
               <label>Description</label>
               <textarea name="description" rows="5" placeholder="Write a description about Your auto." value=""></textarea>
             </div>
+            <div class="nice-form-group">
+              <label>Price</label>
+              <input name="price" type="text" class="form-control" placeholder="Enter the price" value="" />
+            </div>
             <button type="button" id="goto2" class="mt-2 button-28">Next 1/3</button>
             @if ($errors->any())
               <div class="alert alert-danger">

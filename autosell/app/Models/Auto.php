@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Relations\HasOne;
 
 class Auto extends Model
@@ -11,6 +12,7 @@ class Auto extends Model
     use HasFactory;
     protected $fillable = [
         'description',
+        'price',
         'mark_id',
         'user_id',
         'model_id',
@@ -42,6 +44,10 @@ class Auto extends Model
     public function autohistory(): HasOne 
     {
         return $this->hasOne(AutoHistory::class, 'id', 'auto_history_id'); 
+    }
+    public function image(): HasMany 
+    {
+        return $this->hasMany(Image::class, 'auto_id', 'id'); 
     }
     
 }

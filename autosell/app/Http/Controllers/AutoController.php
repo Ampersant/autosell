@@ -28,6 +28,7 @@ class AutoController extends Controller
             'mileage' => 'required|numeric',
             'numusr' => 'required|numeric',
             'date' => 'required|date',
+            'price' => 'required|numeric'
         ]);
         $fuelcons = array_filter($request->fuelconsumption, function($value){
             return $value !== null;
@@ -56,6 +57,7 @@ class AutoController extends Controller
 
         $auto = Auto::create([
             'description' => $request->description,
+            'price' => $request->price,
             'mark_id' => $request->mark,
             'user_id' => $userID,
             'model_id' => $request->model,
@@ -67,8 +69,10 @@ class AutoController extends Controller
         $files = $request->file('image');
         foreach ($files as $file) {
             $path = $file->store('public/images/autos');
+            $p_path = str_replace('public', 'storage', $path);
             Image::create([
                 'path' => $path,
+                'p_path' => $p_path,
                 'name' => $file->getClientOriginalName(),
                 'size' => $file->getSize(),
                 'mime_type' => $file->getMimeType(),
