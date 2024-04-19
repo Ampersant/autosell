@@ -23,6 +23,7 @@
 
               <div class="col" >
               @foreach ($data['autos'] as $item)
+              
               <div class="row featurette m-5 p-3" style="box-shadow: 1px 2px 10px rgba(0, 0, 0, 0.1);">
                 <div class="col-md-7 order-md-2">
                   <a class="featurette-heading fw-normal lh-1" href="{{route('singleitem.show', ['id' => $item->id])}}"><h2 class="featurette-heading fw-normal lh-1">{{ $item->mark->name }} <span class="text-body-secondary">{{ $item->markmodel->name }}</span></h2></a>

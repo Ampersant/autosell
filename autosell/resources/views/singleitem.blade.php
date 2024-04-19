@@ -23,6 +23,7 @@
               <div class="card">
                   <div class="row">
                       <div class="col-md-6">
+                        @dd($item)
                           {{-- <div class="images p-3"> --}}
                            <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
                               <ol class="carousel-indicators">
@@ -64,7 +65,7 @@
                                   <div class="price d-flex flex-row align-items-center"> <span class="act-price">{{$item->price}}</span>
                                   </div>
                               </div>
-                              <p class="about">{{$item->description}}</p>
+                              <span>Description: </span><p class="about">{{$item->description}}</p>
                               <div class="mt-5">
                                  <ul>
                                     <li>Transmission: </li>

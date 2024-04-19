@@ -44,10 +44,18 @@ class ViewController extends Controller
     }
     public function singleitem($id){
         $item = Auto::find($id)
-        ->with('mark', 'user', 'markmodel', 'type', 'techdata', 'autohistory', 'image')
+        ->with('mark', 
+        'user', 
+        'markmodel', 
+        'type', 
+        'techdata', 'techdata.transmission', 'techdata.state', ''
+
+        'autohistory', 
+        'transmission', 
+        'image')
         ->get();
         $item = $item->first();
-
+        dd($item);
         return view('singleitem', ['item' => $item]);
     }
    
