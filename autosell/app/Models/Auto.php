@@ -14,6 +14,7 @@ class Auto extends Model
         'description',
         'price',
         'mark_id',
+        'color_id',
         'user_id',
         'model_id',
         'type_id',
@@ -49,5 +50,8 @@ class Auto extends Model
     {
         return $this->hasMany(Image::class, 'auto_id', 'id'); 
     }
-    
+    public function color(): HasOne
+    {
+        return $this->hasOne(Color::class, 'id', 'color_id');
+    }
 }

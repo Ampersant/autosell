@@ -7,6 +7,7 @@ use App\Http\Controllers\ImageController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', [ViewController::class, 'index'])->name('index');
+
 Route::middleware(['auth'])->group(function () {
     Route::get('/profile', [ViewController::class, 'profile'])->name('profile.index');
     Route::get('/dashboard', [ViewController::class, 'dashboard'])->name('dashboard.show');

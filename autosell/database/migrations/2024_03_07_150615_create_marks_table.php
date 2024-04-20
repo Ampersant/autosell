@@ -11,14 +11,12 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('techdatas_fuels', function (Blueprint $table) {
+        Schema::create('marks', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('techd_id')->constrained('tech_datas');
-            $table->foreignId('fuel_id')->constrained('fuels');
-            $table->string('consumption');
+            $table->string('name');
+            $table->foreignId('type_id')->constrained('types');
 
         });
-        
     }
 
     /**
@@ -26,6 +24,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        //
+        Schema::dropIfExists('marks');
     }
 };

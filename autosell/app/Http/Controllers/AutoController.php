@@ -34,7 +34,7 @@ class AutoController extends Controller
             return $value !== null;
         });
         $fuelcons = array_values($fuelcons);
-        $consumption = implode(', ', $fuelcons);
+        // $consumption = implode(', ', $fuelcons);
         //creation 
         $auto_history = AutoHistory::create([
             'mileage' => $request->mileage,
@@ -45,19 +45,24 @@ class AutoController extends Controller
         $tech_data =TechData::create([
             'year' => $request->year,
             'state_id' => $request->state,
-            'consumption' => $consumption,
             'form_id' => $request->form,
             'transmission_id' => $request->transmission
         ]);
-
+        
         $fuels = $request->fueltype;
-        foreach($fuels as $key => $value ){
-            $tech_data->fuel()->attach($value);
+        $dataToAttach = [];
+        foreach ($fuels as $index => $fuel_id) {
+            $dataToAttach[$fuel_id] = ['consumption' => $fuelcons[$index]];
         }
+        $tech_data->fuel()->attach($dataToAttach);
+        // foreach($fuels as $key => $value ){
+        //     $tech_data->fuel()->attach($value);
+        // }
 
         $auto = Auto::create([
             'description' => $request->description,
             'price' => $request->price,
+            'color_id' => 2,
             'mark_id' => $request->mark,
             'user_id' => $userID,
             'model_id' => $request->model,

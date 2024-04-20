@@ -7,6 +7,7 @@ use App\Models\Auto;
 use App\Models\Fuel;
 use App\Models\Type;
 use App\Models\State;
+use App\Models\Color;
 use App\Models\Transmission;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -35,6 +36,7 @@ class ViewController extends Controller
         $types = Type::all();
         $fuels = Fuel::all();
         $states = State::all();
+        $colors = Color::all();
         $transmissions = Transmission::all();
         return view('profile.advertisement_form', ['active_link' => 'adform', 
                                                     'types' => $types,
@@ -43,19 +45,9 @@ class ViewController extends Controller
                                                     'fuels' => $fuels]);
     }
     public function singleitem($id){
-        $item = Auto::find($id)
-        ->with('mark', 
-        'user', 
-        'markmodel', 
-        'type', 
-        'techdata', 'techdata.transmission', 'techdata.state', ''
-
-        'autohistory', 
-        'transmission', 
-        'image')
-        ->get();
+        $item = Auto::find($id);
         $item = $item->first();
-        dd($item);
+        // dd($item->techdata->form);
         return view('singleitem', ['item' => $item]);
     }
    

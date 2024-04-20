@@ -23,7 +23,7 @@ class TechData extends Model
     ];
     public function form(): HasOne
     {
-        return $this->hasOne(Form::class);
+        return $this->hasOne(Form::class, 'id', 'form_id');
     }
     public function transmission(): HasOne
     {
@@ -35,7 +35,7 @@ class TechData extends Model
     }
     public function fuel(): BelongsToMany
     {
-        return $this->belongsToMany(Fuel::class, 'techdatas_fuels', 'techd_id', 'fuel_id');
+        return $this->belongsToMany(Fuel::class, 'techdatas_fuels', 'techd_id', 'fuel_id')->withPivot('consumption');
     }
 
 }

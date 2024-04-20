@@ -14,6 +14,7 @@ return new class extends Migration
         Schema::create('images', function (Blueprint $table) {
             $table->id();
             $table->string('path');
+            $table->string('p_path');
             $table->string('name');
             $table->double('size');
             $table->string('mime_type');

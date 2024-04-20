@@ -14,11 +14,9 @@ return new class extends Migration
         Schema::create('tech_datas', function (Blueprint $table) {
             $table->id();
             $table->tinyInteger('year');
-            $table->string('state');
-            $table->string('consumption');
             $table->foreignId('form_id')->constrained('forms');
+            $table->foreignId('state_id')->constrained('states');
             $table->foreignId('transmission_id')->constrained('transmissions');
-            $table->foreignId('fuel_id')->constrained('fuels');
             $table->timestamps();
         });
     }
