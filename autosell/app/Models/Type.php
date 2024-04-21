@@ -12,10 +12,6 @@ class Type extends Model
     protected $fillable = [
         'name',
     ];
-    public function techdatas(): HasMany
-    {
-        return $this->hasMany(TechData::class);
-    }
     public function marks(): HasMany
     {
         return $this->hasMany(Mark::class);

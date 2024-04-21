@@ -23,7 +23,6 @@
               <div class="card">
                   <div class="row">
                       <div class="col-md-6">
-                        @dd($item)
                           {{-- <div class="images p-3"> --}}
                            <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
                               <ol class="carousel-indicators">
@@ -33,13 +32,13 @@
                               </ol>
                               <div class="carousel-inner">
                                 <div class="carousel-item active">
-                                  <img class="d-block w-100" src="{{asset('storage/images/autos/ATnGf6i7ojbmtdBiuXBSTqos4GHaRzBASZ3Xiydp.jpg')}}" alt="First slide">
+                                  <img class="d-block w-100" src="{{asset($item->image->first()->p_path)}}" alt="First slide">
                                 </div>
                                 <div class="carousel-item">
-                                  <img class="d-block w-100" src="{{asset('storage/images/autos/mercedes_benz_rds00880_3.jpg')}}" alt="Second slide">
+                                  <img class="d-block w-100" src="{{asset('storage/images/autos/hADbrHSAgCo9rdfPAIaKztnItcpqcJjnpi64zqLl.jpg')}}" alt="Second slide">
                                 </div>
                                 <div class="carousel-item">
-                                  <img class="d-block w-100" src="{{asset('storage/images/autos/ATnGf6i7ojbmtdBiuXBSTqos4GHaRzBASZ3Xiydp.jpg')}}" alt="Third slide">
+                                  <img class="d-block w-100" src="{{asset('storage/images/autos/hADbrHSAgCo9rdfPAIaKztnItcpqcJjnpi64zqLl.jpg')}}" alt="Third slide">
                                 </div>
                               </div>
                               <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
@@ -58,20 +57,70 @@
                       <div class="col-md-6">
                           <div class="product p-4">
                               <div class="d-flex justify-content-between align-items-center">
-                                  <div class="d-flex align-items-center"> <i class="fa fa-long-arrow-left"></i> <span class="ml-1">Back</span> </div> <i class="fa fa-shopping-cart text-muted"></i>
+                                  <div class="d-flex align-items-center"><a href="{{route('index')}}"><i class="fa fa-long-arrow-left"></i> <span class="ml-3">Back</span></a></div>
                               </div>
-                              <div class="mt-4 mb-3"> <span class="text-uppercase text-muted brand">{{$item->mark->name}}</span>
+                              <div class="mt-2 mb-3"> <span class="text-uppercase text-muted brand">{{$item->mark->name}}</span>
                                   <h5 class="text-uppercase">{{$item->markmodel->name}}</h5>
                                   <div class="price d-flex flex-row align-items-center"> <span class="act-price">{{$item->price}}</span>
                                   </div>
                               </div>
-                              <span>Description: </span><p class="about">{{$item->description}}</p>
-                              <div class="mt-5">
-                                 <ul>
-                                    <li>Transmission: </li>
-                                 </ul> 
-                                 
+                                <h5 class="text-uppercase">Color: </h5><span class="dot" style="background-color: {{$item->color->name}}"></span>
+                              <h5 class="text-uppercase">Description: </h5><p class="about">{{$item->description}}</p>
+                              {{-- accordion --}}
+                              <div class="accordion" id="accordionExample">
+                                <div class="accordion-item">
+                                  <h2 class="accordion-header">
+                                    <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                                      Tech data
+                                    </button>
+                                  </h2>
+                                  <div id="collapseOne" class="accordion-collapse collapse show" data-bs-parent="#accordionExample">
+                                    <div class="accordion-body">
+                                      <ul>
+   
+                                          <li>Transmission: {{$item->techdata->transmission->type}}</li>
+                                          <li>State: {{$item->techdata->state->name}}</li>
+                                          <li>Year: {{$item->techdata->year}}</li>
+                                          <li>Form: {{$item->techdata->form->name}}</li>
+                                       </ul> 
+                                  </div>
+                                </div>
+                                <div class="accordion-item">
+                                  <h2 class="accordion-header">
+                                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                                      Auto history
+                                    </button>
+                                  </h2>
+                                  <div id="collapseTwo" class="accordion-collapse collapse" data-bs-parent="#accordionExample">
+                                    <div class="accordion-body">
+                                      <ul>
+                                        <li>Mileage: {{$item->autohistory->mileage}}</li>
+                                        <li>Number of users: {{$item->autohistory->num_users}}</li>
+                                        <li>Last technical inspection: {{$item->autohistory->last_tech_insp}}</li>
+                                     </ul>
+                                    </div>
+                                  </div>
+                                </div>
+                                <div class="accordion-item">
+                                  <h2 class="accordion-header">
+                                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+                                      Fuel and consumption
+                                    </button>
+                                  </h2>
+                                  <div id="collapseThree" class="accordion-collapse collapse" data-bs-parent="#accordionExample">
+                                    <div class="accordion-body">
+                                      <ul>
+                                        
+                                        @foreach ($item->techdata->fuel as $fuel)
+                                          <li>Type of fuel: {{$fuel->type}}, consumption: {{$fuel->pivot->consumption}}</li>
+                                        @endforeach
+                                        
+                                      </ul>
+                                    </div>
+                                  </div>
+                                </div>
                               </div>
+                              {{-- end accordion --}}
                               <div class="cart mt-4 align-items-center"> <button class="btn btn-danger text-uppercase mr-2 px-4">Add to cart</button> <i class="fa fa-heart text-muted"></i> <i class="fa fa-share-alt text-muted"></i> </div>
                           </div>
                       </div>

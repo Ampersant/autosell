@@ -27,11 +27,11 @@ class TechData extends Model
     }
     public function transmission(): HasOne
     {
-        return $this->hasOne(Transmission::class);
+        return $this->hasOne(Transmission::class, 'id', 'transmission_id');
     }
     public function state(): HasOne
     {
-        return $this->hasOne(State::class);
+        return $this->hasOne(State::class, 'id', 'state_id');
     }
     public function fuel(): BelongsToMany
     {

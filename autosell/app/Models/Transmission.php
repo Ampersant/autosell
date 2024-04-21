@@ -14,6 +14,6 @@ class Transmission extends Model
     ];
     public function techdatas(): HasMany
     {
-        return $this->hasMany(TechData::class);
+        return $this->hasMany(TechData::class,'transmission_id', 'id');
     }
 }
