@@ -8,6 +8,7 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
 
 class Color extends Model
 {
+    public $timestamps = false; 
     protected $fillabel = [
         'name'
     ];

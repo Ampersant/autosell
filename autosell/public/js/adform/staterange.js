@@ -2,33 +2,32 @@ function updateParagraph(value) {
     var output = document.getElementById("output");
     var text = "";
 
-    // Определите текст в соответствии с значением ползунка
-    switch(value) {
-        case "1":
-            text = "After accident";
-            break;
-        case "2":
-            text = "Poor";
-            break;
-        case "3":
-            text = "Not good";
-            break;
-        case "4":
-            text = "Ok";
-            break;
-        case "5":
-            text = "Normal";
-            break;
-        case "6":
-            text = "Good";
-            break;
-        case "7":
-            text = "New";
-            break;
-        default:
-            text = "Choose the state";
-    }
+    // Отправляем AJAX-запрос
+    var xhr = new XMLHttpRequest();
+    xhr.onreadystatechange = function() {
+        if (xhr.readyState === XMLHttpRequest.DONE) {
+            if (xhr.status === 200) {
+                var states = JSON.parse(xhr.responseText);
+                text = getStateText(value, states);
+            } else {
+                text = "Error fetching data";
+            }
+            output.textContent = text;
+        }
+    };
+    xhr.open("GET", "/api/getstates", true);
+    xhr.send();
+}
 
-    // Обновите содержимое параграфа
-    output.textContent = text;
+function getStateText(value, states) {
+    // Найдем соответствующее состояние
+    var state = states.find(function(item) {
+        return item.id == value;
+    });
+
+    if (state) {
+        return state.name; // Предположим, что у состояния есть поле "name"
+    } else {
+        return "State not found";
+    }
 }

@@ -9,6 +9,7 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
 class MarkModel extends Model
 {
     use HasFactory;
+    public $timestamps = false; 
     protected $table = 'models';
 
     protected $fillable = [

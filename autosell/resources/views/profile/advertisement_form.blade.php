@@ -5,14 +5,18 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link rel="stylesheet" href="{{ asset('css/nice-form.css') }}">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.6.4/css/bootstrap-datepicker.css" rel="stylesheet"/>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.6.4/js/bootstrap-datepicker.js"></script>
     <script src="{{ asset('js/adform/nextform.js') }}"></script>
     <script src="{{ asset('js/adform/getmodel.js') }}"></script>
     <script src="{{ asset('js/adform/staterange.js') }}"></script>
     <script src="{{ asset('js/adform/fuelcons.js') }}"></script>
+    <script src="{{ asset('js/adform/colorselect.js') }}"></script>
+    <script src="{{ asset('js/adform/datepicker.js') }}"></script>
     {{-- <script src="{{ asset('js/adform/preview.js') }}"></script> --}}
     <style>img {
       display: block;
@@ -110,8 +114,23 @@
         <div id="form3" class="container col-md-5 hidden" style="position: absolute;">
           <div class="nice-form-group">
             <div class="nice-form-group">
+              <label id="selectedColor" for="colorselection">Select the color</label>
+              <div id=colorselection class="btn-group">
+                @foreach ($colors as $color)
+                  <button type="button" class="btn btn-outline-secondary color-button" data-color="{{$color->name}}" data-color-id="{{$color->id}}">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="{{$color->name}}" class="bi bi-circle-fill" viewBox="0 0 16 16">
+                      <circle cx="8" cy="8" r="8"></circle></svg>
+                    <span class="visually-hidden">Button</span>
+                  </button>
+                @endforeach
+                <input type="hidden" id="selectedColorInput" name="color" value="">
+              </div>
+
+            </div>
+            {{-- <h6 class="m-2" id=""></h6> --}}
+            <div class="nice-form-group">
               <label>Year of production</label>
-              <input name="year" type="text" class="form-control" placeholder="4 digits" value="" />
+              <input type="text" id="datepicker" name="year"/>
             </div>
             <div class="nice-form-group">
               <label>Mileage</label>

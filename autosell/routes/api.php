@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Api\MarkModelController;
+use App\Http\Controllers\Api\StateController;
 use Illuminate\Http\Request;
 use App\Http\Controllers\RolesController;
 use App\Http\Controllers\Api\TypeController;
@@ -14,3 +15,4 @@ Route::get('/roles', [RolesController::class, 'index']);
 Route::get('/getmodelsbymark', [MarkModelController::class, 'getbymark']);
 Route::get('/getmarks', [TypeController::class, 'getmarks']);
 Route::get('/getforms', [TypeController::class, 'getforms']);
+Route::get('/getstates', [StateController::class, 'getstates']);

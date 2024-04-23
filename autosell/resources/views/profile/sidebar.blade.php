@@ -9,8 +9,8 @@
     <div class="side-inner">
       <div class="profile">
         <img src="https://bootdey.com/img/Content/avatar/avatar7.png" alt="Image" class="img-fluid">
-        <h3 class="name">Debby Williams</h3>
-        <span class="country">New York, USA</span>
+        <h3 class="name">{{auth()->user()->username}}</h3>
+        <span class="country">{{auth()->user()->email}}</span>
       </div>
     <div class="counter d-flex justify-content-center">
     

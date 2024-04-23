@@ -10,6 +10,7 @@ use Illuminate\Database\Eloquent\Relations\HasOne;
 class Mark extends Model
 {
     use HasFactory;
+    public $timestamps = false; 
     protected $fillable = [
         'name',
         'type_id'

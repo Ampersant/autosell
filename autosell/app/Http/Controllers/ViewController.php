@@ -41,12 +41,12 @@ class ViewController extends Controller
         return view('profile.advertisement_form', ['active_link' => 'adform', 
                                                     'types' => $types,
                                                     'states' => $states,
+                                                    'colors' => $colors,
                                                     'transmissions' => $transmissions,
                                                     'fuels' => $fuels]);
     }
     public function singleitem($id){
         $item = Auto::find($id);
-        $item = $item->first();
         // dd($item->techdata->form);
         return view('singleitem', ['item' => $item]);
     }

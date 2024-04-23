@@ -8,7 +8,7 @@ use App\Models\Form;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 
-class TypeMarkModelSeeder extends Seeder
+class TypeMarkModelFormSeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -35,7 +35,7 @@ class TypeMarkModelSeeder extends Seeder
             'type_id' => $moto->id
         ]);
         Form::create([
-            'name' => 'Motorad',
+            'name' => 'Motorrad',
             'type_id' => $moto->id
         ]);
 

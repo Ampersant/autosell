@@ -19,5 +19,12 @@ class DatabaseSeeder extends Seeder
         //     'name' => 'Test User',
         //     'email' => 'test@example.com',
         // ]);
+        $this->call(ColorSeeder::class);
+        $this->call(FuelSeeder::class);
+        $this->call(RoleSeeder::class);
+        $this->call(StateSeeder::class);
+        $this->call(TransmissionSeeder::class);
+        // $this->call(TypeMarkModelFormSeeder::class);
+
     }
 }

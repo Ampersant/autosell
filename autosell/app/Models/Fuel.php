@@ -11,6 +11,7 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
 class Fuel extends Model
 {
     use HasFactory;
+    public $timestamps = false; 
     protected $fillable = [
         'type',
     ];

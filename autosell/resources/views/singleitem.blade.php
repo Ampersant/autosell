@@ -5,11 +5,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link rel="stylesheet" href="{{ asset('/css/app.css') }}">
-
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://getbootstrap.com/docs/5.3/assets/css/docs.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+
     <title>Document</title>
     <style>
       
@@ -24,32 +25,42 @@
                   <div class="row">
                       <div class="col-md-6">
                           {{-- <div class="images p-3"> --}}
-                           <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
-                              <ol class="carousel-indicators">
-                                <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
-                                <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
-                                <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
-                              </ol>
-                              <div class="carousel-inner">
-                                <div class="carousel-item active">
-                                  <img class="d-block w-100" src="{{asset($item->image->first()->p_path)}}" alt="First slide">
-                                </div>
-                                <div class="carousel-item">
-                                  <img class="d-block w-100" src="{{asset('storage/images/autos/hADbrHSAgCo9rdfPAIaKztnItcpqcJjnpi64zqLl.jpg')}}" alt="Second slide">
-                                </div>
-                                <div class="carousel-item">
-                                  <img class="d-block w-100" src="{{asset('storage/images/autos/hADbrHSAgCo9rdfPAIaKztnItcpqcJjnpi64zqLl.jpg')}}" alt="Third slide">
-                                </div>
+                            <div id="carouselExampleIndicators" class="carousel slide">
+                              <div class="carousel-indicators">
+                                @for($i = 0; $i < count($item->image); $i++)
+                                  @if ($i == 0)
+                                    <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="{{$i}}" class="active" aria-current="true" aria-label="Slide {{$i+1}}"></button> 
+                                  @else
+                                    <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="{{$i}}" aria-label="Slide {{$i+1}}"></button>    
+                                  @endif
+                                @endfor
                               </div>
-                              <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
+                              <div class="carousel-inner">
+                                
+                                @foreach ($item->image as $key => $image)
+                                @if ($key == 0)
+                                      <div class="carousel-item active">
+                                        <img src="{{asset($image->p_path)}}" class="d-block w-100" alt="...">
+                                      </div>
+                                    @else
+                                      <div class="carousel-item">
+                                        <img src="{{asset($image->p_path)}}" class="d-block w-100" alt="...">
+                                      </div>
+                                    @endif
+
+                                @endforeach
+                                
+                              </div>
+                              <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="prev">
                                 <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                                <span class="sr-only">Previous</span>
-                              </a>
-                              <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
+                                <span class="visually-hidden">Previous</span>
+                              </button>
+                              <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="next">
                                 <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                                <span class="sr-only">Next</span>
-                              </a>
+                                <span class="visually-hidden">Next</span>
+                              </button>
                             </div>
+
                               {{-- <div class="text-center p-4"> <img id="main-image" src="{{asset($item->image->first()->p_path)}}" width="250" /> </div>
                               <div class="thumbnail text-center"> <img onclick="change_image(this)" src="https://i.imgur.com/Rx7uKd0.jpg" width="70"> <img onclick="change_image(this)" src="https://i.imgur.com/Dhebu4F.jpg" width="70"> </div> --}}
                           {{-- </div> --}}
@@ -143,5 +154,6 @@ container.src = image.src;
 document.addEventListener("DOMContentLoaded", function(event) {
 });
 </script>
+
 </body>
 </html>

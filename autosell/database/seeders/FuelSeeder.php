@@ -13,9 +13,9 @@ class FuelSeeder extends Seeder
      */
     public function run(): void
     {
-        Fuel::create(['name' => 'Petrol']);
-        Fuel::create(['name' => 'Gas']);
-        Fuel::create(['name' => 'Electro']);
-        Fuel::create(['name' => 'Hybrid']);
+        Fuel::create(['type' => 'Petrol']);
+        Fuel::create(['type' => 'Gas']);
+        Fuel::create(['type' => 'Electro']);
+        Fuel::create(['type' => 'Hybrid']);
     }
 }
