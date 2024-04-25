@@ -29,12 +29,13 @@
                   <a class="featurette-heading fw-normal lh-1" href="{{route('singleitem.show', ['id' => $item->id])}}"><h2 class="featurette-heading fw-normal lh-1">{{ $item->mark->name }} <span class="text-body-secondary">{{ $item->markmodel->name }}</span></h2></a>
                   <p class="lead">{{ $item->description }}</p>
                 </div>
-
+                <?php ?>
+                  {{-- @dd(base64_encode($item->image[0]->encode())) --}}
                   <div class="col-md-5 order-md-1">
                     <svg class="bd-placeholder-img bd-placeholder-img-lg featurette-image img-fluid mx-auto" width="500" height="500"  role="img" preserveAspectRatio="xMidYMid slice" focusable="false">
                       <title>{{$item->mark->name}}</title>
                       <rect width="100%" height="100%" fill="var(--bs-secondary-bg)"></rect>
-                      <image xlink:href="{{asset($item->image->first()->p_path)}}" width="100%" height="100%" />
+                      <image xlink:href="{{asset($item->image[0]->p_path)}}" width="100%" height="100%" />
                       <!-- Вместо "url_вашего_изображения" укажите путь к вашему изображению -->
                       <text x="50%" y="50%" fill="var(--bs-secondary-color)" dy=".3em"></text>
                     </svg>
