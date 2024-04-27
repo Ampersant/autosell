@@ -34,11 +34,7 @@ class ViewController extends Controller
         $encoder = new AutoEncoder();
         // dd(Auth::check());
         $data['autos'] = Auto::with(['mark', 'user', 'markmodel', 'type', 'techdata', 'autohistory', 'image'])->get();
-        foreach($data['autos'] as $auto){
-            // dd($auto->image->toArray());
-            $auto->image = $this->resizingImg($auto->image->toArray(), 500, 500);
-        }
-        dd(base64_encode($data['autos'][0]->image[0]->encode($encoder)));
+
         return view('index', compact('data'));
     }
     public function register(){

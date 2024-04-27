@@ -9,6 +9,9 @@ use App\Models\Auto;
 use App\Models\Image;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
+use Intervention\Image\Drivers\Gd\Driver;
+use Intervention\Image\ImageManager;
+
 class AutoController extends Controller
 {
     public function adform_store(Request $request){
@@ -76,6 +79,11 @@ class AutoController extends Controller
         foreach ($files as $file) {
             $path = $file->store('public/images/autos');
             $p_path = str_replace('public', 'storage', $path);
+            
+            $manager = new ImageManager(Driver::class); 
+
+            $thumbnail = $manager->make($file)->resize(500,500);
+
             Image::create([
                 'path' => $path,
                 'p_path' => $p_path,
@@ -86,6 +94,16 @@ class AutoController extends Controller
             ]);
         }
         return redirect()->route('profile.index');
+    }
+    public function destroy($id){
+        $images = Image::where('auto_id', $id)->get();
+        foreach($images as $image){
+            dd(Storage::delete('app/'.$image->path));
+            $image->delete();
+        }
+        
+        Auto::destroy($id);
+        return redirect('/');
     }
 
 }

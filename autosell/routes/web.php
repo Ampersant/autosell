@@ -20,6 +20,7 @@ Route::get('/login', [ViewController::class, 'login'])->name('login.show');
 // 
 
 Route::get('/item/{id}', [ViewController::class, 'singleitem'])->name('singleitem.show');
+Route::delete('/delete/item/{id}', [AutoController::class, 'destroy'])->name('singleitem.destroy');
 Route::get('/images/{path}', [ImageController::class, 'show'])->name('image.show');
   
 require __DIR__.'/auth.php';

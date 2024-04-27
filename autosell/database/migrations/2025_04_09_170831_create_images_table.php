@@ -18,7 +18,7 @@ return new class extends Migration
             $table->string('name');
             $table->double('size');
             $table->string('mime_type');
-            $table->foreignId('auto_id')->constrained('autos');
+            $table->foreignId('auto_id')->constrained('autos')->onDelete('cascade');
             $table->timestamps();
         });
     }

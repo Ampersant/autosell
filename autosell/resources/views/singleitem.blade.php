@@ -133,6 +133,13 @@
                               </div>
                               {{-- end accordion --}}
                               <div class="cart mt-4 align-items-center"> <button class="btn btn-danger text-uppercase mr-2 px-4">Add to cart</button> <i class="fa fa-heart text-muted"></i> <i class="fa fa-share-alt text-muted"></i> </div>
+                              @if ($item->user->id === auth()->id())
+                                  <form action="{{route('singleitem.destroy', ['id' => $item->id])}}" method="post">
+                                    @csrf
+                                    @method('DELETE')
+                                    <button type="submit">Delete item</button>
+                                  </form>
+                              @endif
                           </div>
                       </div>
                   </div>
