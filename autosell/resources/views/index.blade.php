@@ -32,13 +32,7 @@
                 <?php ?>
                   {{-- @dd(base64_encode($item->image[0]->encode())) --}}
                   <div class="col-md-5 order-md-1">
-                    <svg class="bd-placeholder-img bd-placeholder-img-lg featurette-image img-fluid mx-auto" width="500" height="500"  role="img" preserveAspectRatio="xMidYMid slice" focusable="false">
-                      <title>{{$item->mark->name}}</title>
-                      <rect width="100%" height="100%" fill="var(--bs-secondary-bg)"></rect>
-                      <image xlink:href="{{asset($item->image[0]->p_path)}}" width="100%" height="100%" />
-                      <!-- Вместо "url_вашего_изображения" укажите путь к вашему изображению -->
-                      <text x="50%" y="50%" fill="var(--bs-secondary-color)" dy=".3em"></text>
-                    </svg>
+                    <img src="{{ asset($item->image[0]->thumb_path) }}" alt="{{ $item->mark->name }}" class="img-fluid mx-auto d-block" style="width: 300px; height: 300px; object-fit: contain;">
                   </div>
                   
                 

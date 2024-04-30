@@ -13,6 +13,9 @@ class Image extends Model
         'name',
         'path',
         'p_path',
+        'is_thumb',
+        'thumb_path',
+        'carousel_path',
         'size',
         'mime_type',
     ];

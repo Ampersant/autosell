@@ -15,6 +15,9 @@ return new class extends Migration
             $table->id();
             $table->string('path');
             $table->string('p_path');
+            $table->string('carousel_path');
+            $table->boolean('is_thumb');
+            $table->string('thumb_path')->nullable();
             $table->string('name');
             $table->double('size');
             $table->string('mime_type');

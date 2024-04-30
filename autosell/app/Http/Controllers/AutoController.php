@@ -12,6 +12,7 @@ use Illuminate\Support\Facades\Storage;
 use Intervention\Image\Drivers\Gd\Driver;
 use Intervention\Image\ImageManager;
 
+
 class AutoController extends Controller
 {
     public function adform_store(Request $request){
@@ -34,6 +35,7 @@ class AutoController extends Controller
             'date' => 'required|date',
             'price' => 'required|numeric'
         ]);
+        
         $fuelcons = array_filter($request->fuelconsumption, function($value){
             return $value !== null;
         });
@@ -52,7 +54,6 @@ class AutoController extends Controller
             'form_id' => $request->form,
             'transmission_id' => $request->transmission
         ]);
-        
         $fuels = $request->fueltype;
         $dataToAttach = [];
         foreach ($fuels as $index => $fuel_id) {
@@ -76,29 +77,44 @@ class AutoController extends Controller
         ]);
 
         $files = $request->file('image');
-        foreach ($files as $file) {
+        foreach ($files as $key => $file) {
+            $is_thumb = false;
             $path = $file->store('public/images/autos');
             $p_path = str_replace('public', 'storage', $path);
-            
+            $carousel_path = str_replace('autos', 'carousels', $p_path);
+
             $manager = new ImageManager(Driver::class); 
+            if ($key === 0) {
+                $is_thumb = true;
+                $thumb_path = str_replace('autos', 'thumbnails', $p_path);
+                $thumbnail = $manager->read($file)->resize(500,500)->save($thumb_path);
+            }else{
+                $thumb_path = null;
+            }
+            
 
-            $thumbnail = $manager->make($file)->resize(500,500);
+            $carousel = $manager->read($file)->resize(1024,700)->save($carousel_path);
 
+            // $thumbnailPath =   
             Image::create([
                 'path' => $path,
                 'p_path' => $p_path,
+                'is_thumb' => $is_thumb,
+                'thumb_path' => $thumb_path,
+                'carousel_path' => $carousel_path,
                 'name' => $file->getClientOriginalName(),
                 'size' => $file->getSize(),
                 'mime_type' => $file->getMimeType(),
                 'auto_id' => $auto->id
             ]);
         }
-        return redirect()->route('profile.index');
+        
+        return redirect()->route('index');
     }
     public function destroy($id){
         $images = Image::where('auto_id', $id)->get();
         foreach($images as $image){
-            dd(Storage::delete('app/'.$image->path));
+            Storage::delete('app/'.$image->path);
             $image->delete();
         }
         

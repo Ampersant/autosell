@@ -17,22 +17,7 @@ use Intervention\Image\Encoders\AutoEncoder;
 
 class ViewController extends Controller
 {
-    public function resizingImg(array $images, $width, $height){
-        $resizedImages = [];
-        $manager = new ImageManager(Driver::class); 
-        foreach($images as $image){
-            $imagePath = str_replace('/', '\\', public_path($image['p_path']));
-            // dd($imagePath);
-            $img = $manager->read($imagePath);
-            $img->resize($width, $height);
-            $resizedImages[] = $img;
-        }
-        return $resizedImages;
-    }
-
     public function index(){
-        $encoder = new AutoEncoder();
-        // dd(Auth::check());
         $data['autos'] = Auto::with(['mark', 'user', 'markmodel', 'type', 'techdata', 'autohistory', 'image'])->get();
 
         return view('index', compact('data'));

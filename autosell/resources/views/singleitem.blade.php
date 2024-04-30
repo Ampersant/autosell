@@ -40,11 +40,11 @@
                                 @foreach ($item->image as $key => $image)
                                 @if ($key == 0)
                                       <div class="carousel-item active">
-                                        <img src="{{asset($image->p_path)}}" class="d-block w-100" alt="...">
+                                        <img src="{{asset($image->carousel_path)}}" class="d-block w-100" style="object-fit: contain; max-width: 1024px; max-height: 700px;" alt="...">
                                       </div>
                                     @else
                                       <div class="carousel-item">
-                                        <img src="{{asset($image->p_path)}}" class="d-block w-100" alt="...">
+                                        <img src="{{asset($image->carousel_path)}}" class="d-block w-100" style="object-fit: contain; max-width: 1024px; max-height: 700px;"  alt="...">
                                       </div>
                                     @endif
 
