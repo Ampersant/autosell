@@ -43,10 +43,10 @@
           <li><a href="{{ route('dashboard.show')}}"><i class="fa-solid fa-table-columns"></i> Dashboard</a></li>
         @endif
         {{-- notifications --}}
-        @if ($active_link == 'notifications')
-          <li class="active"><a href="#"><i class="fa-regular fa-envelope"></i></span> Notifications</a></li>        
+        @if ($active_link == 'chats')
+          <li class="active"><a href="{{route('chat.show', ['userId' => auth()->user()->id])}}"><i class="fa-regular fa-envelope"></i></span> Notifications</a></li>        
         @else
-          <li><a href="#"><i class="fa-regular fa-envelope"></i></span> Notifications</a></li>
+          <li><a href="{{route('chat.show', ['userId' => auth()->user()->id])}}"><i class="fa-regular fa-envelope"></i></span> Chats</a></li>
         @endif
         
         @if ($active_link == 'adform')

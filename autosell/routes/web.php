@@ -11,8 +11,11 @@ Route::get('/', [ViewController::class, 'index'])->name('index');
 Route::middleware(['auth'])->group(function () {
     Route::get('/profile', [ViewController::class, 'profile'])->name('profile.index');
     Route::get('/dashboard', [ViewController::class, 'dashboard'])->name('dashboard.show');
+    //form
     Route::get('/adform', [ViewController::class, 'adform'])->name('ad.form.show');
     Route::post('/adformstore', [AutoController::class, 'adform_store'])->name('ad.form.store');
+    //chat
+    Route::get('/chats/{userId}', [ViewController::class, 'showchat'])->name('chat.show');
 });
 //toauth
 Route::get('/register', [ViewController::class, 'register'])->name('register.show');

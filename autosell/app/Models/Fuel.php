@@ -19,6 +19,5 @@ class Fuel extends Model
     public function techdatas(): BelongsToMany 
     {
         return $this->belongsToMany(TechData::class, 'techdatas_fuels', 'fuel_id', 'techd_id')->withPivot('consumption');
-
     }
 }

@@ -6,6 +6,8 @@ use App\Http\Resources\AutoResource;
 use App\Models\Auto;
 use App\Models\Fuel;
 use App\Models\Type;
+use App\Models\Chat;
+use App\Models\User;
 use App\Models\State;
 use App\Models\Color;
 use App\Models\Transmission;
@@ -50,6 +52,13 @@ class ViewController extends Controller
     public function singleitem($id){
         $item = Auto::find($id);
         return view('singleitem', ['item' => $item]);
+    }
+    public function showchat($user_id){
+        $user = User::find($user_id);
+        $chats = $user->chats;
+        // dd($chats);
+        return view('chat.chat', ['chats' => $chats,
+                                  'active_link' => 'chats']);
     }
 
    
