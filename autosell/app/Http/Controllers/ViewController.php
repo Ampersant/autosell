@@ -53,8 +53,8 @@ class ViewController extends Controller
         $item = Auto::find($id);
         return view('singleitem', ['item' => $item]);
     }
-    public function showchat($user_id){
-        $user = User::find($user_id);
+    public function showchat(){
+        $user = Auth::user();
         $chats = $user->chats;
         // dd($chats);
         return view('chat.chat', ['chats' => $chats,

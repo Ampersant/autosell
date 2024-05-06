@@ -46,7 +46,7 @@
         @if ($active_link == 'chats')
           <li class="active"><a href="{{route('chat.show', ['userId' => auth()->user()->id])}}"><i class="fa-regular fa-envelope"></i></span> Notifications</a></li>        
         @else
-          <li><a href="{{route('chat.show', ['userId' => auth()->user()->id])}}"><i class="fa-regular fa-envelope"></i></span> Chats</a></li>
+          <li><a href="{{route('chat.show')}}"><i class="fa-regular fa-envelope"></i></span> Chats</a></li>
         @endif
         
         @if ($active_link == 'adform')

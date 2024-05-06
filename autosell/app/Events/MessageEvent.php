@@ -2,6 +2,7 @@
 
 namespace App\Events;
 
+use App\Models\Message;
 use App\Models\User;
 use Illuminate\Broadcasting\Channel;
 use Illuminate\Broadcasting\InteractsWithSockets;
@@ -17,7 +18,7 @@ class MessageEvent implements ShouldBroadcast
 
     public function __construct(
             public User $user, 
-            public $message
+            public Message $message
         ){}
 
     /**

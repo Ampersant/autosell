@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\AutoController;
 use App\Http\Controllers\ViewController;
+use App\Http\Controllers\ChatController;
 use App\Http\Controllers\AuthViewController;
 use App\Http\Controllers\ImageController;
 use Illuminate\Support\Facades\Route;
@@ -15,7 +16,8 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/adform', [ViewController::class, 'adform'])->name('ad.form.show');
     Route::post('/adformstore', [AutoController::class, 'adform_store'])->name('ad.form.store');
     //chat
-    Route::get('/chats/{userId}', [ViewController::class, 'showchat'])->name('chat.show');
+    Route::get('/chats', [ViewController::class, 'showchat'])->name('chat.show');
+    Route::post('/chats/{chatId}', [ChatController::class, 'message_send'])->name('message.send');
 });
 //toauth
 Route::get('/register', [ViewController::class, 'register'])->name('register.show');
