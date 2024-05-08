@@ -90,6 +90,8 @@ body{
 
 .chat .chat-history {
     padding: 20px;
+    height: 70vh !important;
+
     border-bottom: 2px solid #fff
 }
 

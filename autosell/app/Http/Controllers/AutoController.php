@@ -121,5 +121,8 @@ class AutoController extends Controller
         Auto::destroy($id);
         return redirect('/');
     }
+    public function update($id){
+        
+    }
 
 }

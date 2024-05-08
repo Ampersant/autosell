@@ -16,32 +16,21 @@
 <body style="background-color: #F9FBFC">
     @include('layouts.header')
 <div>
- 
     <div class="container">
         <div class="row">
           @include('layouts.nav')
-
               <div class="col" >
               @foreach ($data['autos'] as $item)
-              
               <div class="row featurette m-5 p-3" style="box-shadow: 1px 2px 10px rgba(0, 0, 0, 0.1);">
                 <div class="col-md-7 order-md-2">
                   <a class="featurette-heading fw-normal lh-1" href="{{route('singleitem.show', ['id' => $item->id])}}"><h2 class="featurette-heading fw-normal lh-1">{{ $item->mark->name }} <span class="text-body-secondary">{{ $item->markmodel->name }}</span></h2></a>
                   <p class="lead">{{ $item->description }}</p>
                 </div>
-                <?php ?>
-                  {{-- @dd(base64_encode($item->image[0]->encode())) --}}
                   <div class="col-md-5 order-md-1">
                     <img src="{{ asset($item->image[0]->thumb_path) }}" alt="{{ $item->mark->name }}" class="img-fluid mx-auto d-block" style="width: 300px; height: 300px; object-fit: contain;">
                   </div>
-                  
-                
-
-
               </div>
               @endforeach
-
-            
         </div>
     </div>
 </div>
