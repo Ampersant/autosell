@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Api\AutoFilterController;
 use App\Http\Controllers\Api\MarkModelController;
 use App\Http\Controllers\Api\StateController;
 use Illuminate\Http\Request;
@@ -16,3 +17,5 @@ Route::get('/getmodelsbymark', [MarkModelController::class, 'getbymark']);
 Route::get('/getmarks', [TypeController::class, 'getmarks']);
 Route::get('/getforms', [TypeController::class, 'getforms']);
 Route::get('/getstates', [StateController::class, 'getstates']);
+Route::get('/filters', [AutoFilterController::class, 'allfilters'])->name('allfilters');
+Route::post('/filters', [AutoFilterController::class, 'applyfilters'])->name('applyfilters');

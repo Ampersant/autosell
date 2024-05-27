@@ -17,8 +17,9 @@
     </style>
 </head>
 <body>
+  @include('layouts.loader')
     @include('layouts.header')
-    <div class="container mt-5 mb-5">
+    <div id="content" class="container mt-5 mb-5">
       <div class="row d-flex justify-content-center">
           <div class="col-md-10">
               <div class="card">
@@ -150,17 +151,27 @@
     @include('layouts.footer')
 <script>
    function change_image(image){
-
-var container = document.getElementById("main-image");
-
-container.src = image.src;
-}
-
-
-
-document.addEventListener("DOMContentLoaded", function(event) {
-});
+    var container = document.getElementById("main-image");
+    container.src = image.src;
+    }
+    document.addEventListener("DOMContentLoaded", function(event) {
+    });
 </script>
+<script>
+  $(document).ready(function() {
+    $('a').click(function(event) {
+      event.preventDefault(); // Prevent the default link behavior
 
+      // Animate the fade out
+      $('#content').addClass('fade-out');
+
+      // Wait for the animation to complete before following the link
+      let url = $(this).attr('href');
+      setTimeout(function() {
+        window.location.href = url;
+      }, 700); // Duration of the fade out animation in milliseconds
+    });
+  });
+</script>
 </body>
 </html>

@@ -10,5 +10,4 @@ function toggleInput(checkbox) {
     } else {
       inputField.style.display = "none";
     }
-  }
-  
+}
