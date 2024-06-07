@@ -6,11 +6,56 @@
   <div class="accordion mt-2" id="accordionExample">
     <div class="accordion-item">
       <h2 class="accordion-header">
-        <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseNull" aria-expanded="true" aria-controls="collapseNull">
+          Type and marks
+        </button>
+      </h2>
+      <div id="collapseNull" class="accordion-collapse collapse" data-bs-parent="#accordionExample">
+        <div class="accordion-body">
+          <ul>
+            <li>
+              <div class="nice-form-group">
+                <label>Type</label>
+                <select id="type" name="type">
+                  <option value="null">Please select a type</option>
+                </select>
+              </div>
+            </li>
+            <li>
+              <div class="nice-form-group">
+                <label>Mark</label>
+                <select id="mark" name="mark" disabled>
+                  <option selected value="null">Please select a type first</option>
+                </select>
+              </div>
+            </li>
+            <li>
+              <div class="nice-form-group">
+                <label>Model</label>
+                <select id="model" name="model" disabled>
+                  <option selected>Please select a mark first</option>
+                </select>
+              </div>
+            </li>
+            <li>
+              <div class="nice-form-group">
+                <label>Form</label>
+                <select id="form" name="form" disabled>
+                  <option selected>Please select a type first</option>
+                </select>
+              </div>
+            </li>
+         </ul>
+        </div>
+      </div>
+    </div>
+    <div class="accordion-item">
+      <h2 class="accordion-header">
+        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="false" aria-controls="collapseOne">
           Tech data
         </button>
       </h2>
-      <div id="collapseOne" class="accordion-collapse collapse show" data-bs-parent="#accordionExample">
+      <div id="collapseOne" class="accordion-collapse collapse" data-bs-parent="#accordionExample">
         <div class="accordion-body">
           <ul>
              <li>
@@ -53,16 +98,7 @@
                     </div>
                 </div>
               </li>
-              <li>
-                <div class="nice-form-group">
-                    <label>Form</label>
-                  <select name="form">
-                    <option>Please select a value</option>
-                    <option>Option 1</option>
-                    <option>Option 2</option>
-                  </select>
-                </div>
-              </li>
+
            </ul> 
         </div>
       </div>
@@ -169,6 +205,13 @@
       });
 
     function fillFilters(data){
+      //types
+      let typeSelect = $('select[name="type"]');
+      typeSelect.empty();
+      typeSelect.append('<option value="null">Please select a type</option>');
+      data.types.forEach(function(item){
+        typeSelect.append('<option value="'+item.id+'">'+item.name+'</option>')
+      });
       //transmissions
       let transmissionSelect = $('select[name="transmission"]');
       transmissionSelect.empty();
@@ -218,11 +261,16 @@
         fuelContainer.append('<div class="nice-form-group"><input type="checkbox" class="switch" id="fuel-'+item.id+'" name="fuel" value="'+item.id+'"><label for="fuel-'+item.id+'">'+item.type+'</label></div>');
       });
     }
-
+    $(document).on('change', 'select, input[type="checkbox"], input[type="number"], input[type="date"]', function() {
+      console.log('Element changed:', this);
+      $('#filterModal').fadeIn();
+    });
     // Show modal on filter change
-  $('select, input[type="checkbox"], input[type="number"], input[type="date"]').change(function() {
-    $('#filterModal').fadeIn();
-  });
+  // $('').change(function() {
+  //   console.log('Element changed:', this);
+
+  //   $('#filterModal').fadeIn();
+  // });
 
   // Apply filters and create tag cloud
   $('#applyFilters').click(function() {
@@ -257,6 +305,9 @@
   // Send filters to backend
   function sendFilters() {
     let filters = {
+      type: $('select[name="type"]').val() === 'null' ? null : $('select[name="form"]').val(),
+      mark: $('select[name="mark"]').val() === 'null' ? null : $('select[name="mark"]').val(),
+      model: $('select[name="model"]').val() === 'null' ? null : $('select[name="model"]').val(),
       transmission: $('select[name="transmission"]').val(),
       state: $('input[name="state"]:checked').map(function() { return this.value; }).get(),
       year_from: $('select[name="year_from"]').val() === 'null' ? null : $('select[name="year_from"]').val(),
@@ -281,12 +332,22 @@
   }
   function updateContent(autos) {
     let contentDiv = $('#item');
+
     contentDiv.empty();
+    if (autos.length === 0) {
+      contentDiv.append(`
+      <div class="row featurette m-5 p-3" style="box-shadow: 1px 2px 10px rgba(0, 0, 0, 0.1);">
+          <div class="col-md-7 order-md-2">
+            <span class="text-body-secondary">No elements found</span>
+          </div>
+      </div>      `);
+    }
     autos.forEach(function(auto) {
+
       let autoElement = `
         <div class="row featurette m-5 p-3" style="box-shadow: 1px 2px 10px rgba(0, 0, 0, 0.1);">
           <div class="col-md-7 order-md-2">
-            <a class="featurette-heading fw-normal lh-1" href="/singleitem/${auto.id}"><h2 class="featurette-heading fw-normal lh-1">${auto.mark.name} <span class="text-body-secondary">${auto.markmodel.name}</span></h2></a>
+            <a class="link-body-emphasis link-offset-2 link-underline-opacity-25 link-underline-opacity-75-hover" href="/item/${auto.id}"><h2 class="featurette-heading fw-normal lh-1">${auto.mark.name} <span class="text-body-secondary">${auto.markmodel.name}</span></h2></a>
             <p class="lead">${auto.description}</p>
           </div>
           <div class="col-md-5 order-md-1">

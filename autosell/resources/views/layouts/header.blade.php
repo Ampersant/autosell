@@ -1,89 +1,39 @@
-<header class="header">
-    @include('auth.login_register_modal')
-    <nav class="navbar active navbar-expand-lg fixed-top py-3">
-        <div class="container"><a href="#" class="navbar-brand text-uppercase font-weight-bold">Transparent Nav</a>
-            <button type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation" class="navbar-toggler navbar-toggler-right"><i class="fa fa-bars"></i></button>
+<nav class="navbar navbar-expand-sm navbar-secondary bg-light" style="box-shadow: 0 4px 8px -2px rgba(0, 0, 0, 0.1);">
+    <div class="container-fluid">
+      <a class="navbar-brand" href="javascript:void(0)">Autosell</a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mynavbar">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="mynavbar">
+        <ul class="navbar-nav me-auto">
+          <li class="nav-item">
+            <a class="nav-link" href="{{ route('about.show')}}">About</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#">Contact</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="{{ route('blog.show')}}">Blog</a>
+          </li>
+        </ul>
+        {{-- <form class="d-flex">
+          <input class="form-control me-2" type="text" placeholder="Search">
+          <button class="btn btn-primary" type="button">Search</button>
+
+        </form> --}}
+        <div class="d-flex ms-auto order-5">
+                    
+            @auth
+            <a class="btn btn-light m-2" href="{{ route('profile.index')}}">Profile</a>
+            @endauth
             
-            <div id="navbarSupportedContent" class="collapse navbar-collapse">
-                <ul class="navbar-nav ml-auto">
-                    <li class="nav-item active"><a href="#" class="nav-link text-uppercase font-weight-bold">Home <span class="sr-only">(current)</span></a></li>
-                    <li class="nav-item"><a href="#" class="nav-link text-uppercase font-weight-bold">About</a></li>
-                    <li class="nav-item"><a href="#" class="nav-link text-uppercase font-weight-bold">Gallery</a></li>
-                    <li class="nav-item"><a href="#" class="nav-link text-uppercase font-weight-bold">Portfolio</a></li>
-                    <li class="nav-item"><a href="#" class="nav-link text-uppercase font-weight-bold">Contact</a></li>
-                    <li class="nav-item"></li>
-                    <li class="nav-item"></li>
-                </ul>
-                <div class="d-flex ms-auto order-5">
-                    
-                    @auth
-                    <a class="btn btn-light" href="{{ route('profile.index')}}">Profile</a>
-                    @endauth
-                    
-                    @guest
-                        <a class="btn btn-light" data-toggle="modal" href="javascript:void(0)" onclick="openLoginModal();">Log in</a>
-                        <a class="btn btn-light" data-toggle="modal" href="javascript:void(0)" onclick="openRegisterModal();">Register</a>    
-                    @endguest
+            @guest
+                <a class="btn btn-light m-2" data-toggle="modal" href="javascript:void(0)" onclick="openLoginModal();">Log in</a>
+                <a class="btn btn-light m-2" data-toggle="modal" href="javascript:void(0)" onclick="openRegisterModal();">Register</a>    
+            @endguest
 
-                </div>
-
-            </div>
         </div>
-    </nav>
-</header>
-<style>
-.navbar {
-    transition: all 0.4s;
-}
-
-.navbar .nav-link {
-    color: #fff;
-}
-
-.navbar .nav-link:hover,
-.navbar .nav-link:focus {
-    color: #fff;
-    text-decoration: none;
-}
-
-.navbar .navbar-brand {
-    color: #fff;
-}
-
-
-/* Change navbar styling on scroll */
-.navbar.active {
-    background: #fff;
-    box-shadow: 1px 2px 10px rgba(0, 0, 0, 0.1);
-}
-
-.navbar.active .nav-link {
-    color: #555;
-}
-
-.navbar.active .nav-link:hover,
-.navbar.active .nav-link:focus {
-    color: rgb(232, 135, 30);
-    text-decoration: none;
-}
-
-
-.navbar.active .navbar-brand {
-    color: #555;
-}
-
-
-/* Change navbar styling on small viewports */
-@media (max-width: 991.98px) {
-    .navbar {
-        background: #fff;
-    }
-
-    .navbar .navbar-brand, .navbar .nav-link {
-        color: #555;
-    }
-}
-</style>
-<script>
-
-</script>
+      </div>
+    </div>
+  </nav>
+@include('auth.login_register_modal')

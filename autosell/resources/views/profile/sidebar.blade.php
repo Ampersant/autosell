@@ -60,7 +60,13 @@
         @else
           <li><a href="#"><i class="fa-solid fa-gear"></i> Settings</a></li>
         @endif
-
+        @if (auth()->user()->role->id == 24)
+          @if ($active_link == 'adminpanel')
+            <li class="active"><a href="{{ route('admin.show')}}"><i class="fa-solid fa-gear"></i> Admin panel</a></li>             
+          @else
+            <li><a href="{{ route('admin.show')}}"><i class="fa-solid fa-gear"></i> Admin panel</a></li>
+          @endif
+        @endif
         <form id="logout" action="{{route('logout')}}" method="POST">
             @csrf
             <li><a href="javascript:{}" onclick="document.getElementById('logout').submit(); return false;"><i class="fa-solid fa-right-from-bracket"></i> Sign out</a></li></form>

@@ -31,7 +31,6 @@ class AutoFilterController extends Controller
         $data = [
             'transmissions' => $transmissions,
             'states' => $states,
-            'forms' => $forms,
             'fuels' => $fuels,
             'years' => $years,
             'mileages' => $mileages,

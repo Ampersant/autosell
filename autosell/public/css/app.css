@@ -1,6 +1,5 @@
 body{
     background-color: rgb(235, 245, 223);
-    padding-top: 70px
 }
 .dot {
     height: 25px;
@@ -9,3 +8,11 @@ body{
     display: inline-block;
     box-shadow: 0 0 0 1px black;
   }
+.lead {
+    max-height: 10em; 
+    overflow: hidden; 
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-line-clamp: 6;
+    -webkit-box-orient: vertical;
+}

@@ -1,14 +1,14 @@
 
 
     {{-- <link href="{{ asset('css/bootstrap.css')}}" rel="stylesheet" /> --}}
-
+    <meta name="google-signin-client_id" content="476007921764-hs9c7a8qm3ikojs0apq7krk7sf75c77b.apps.googleusercontent.com">
 	<link href="{{ asset('css/login-register.css')}}" rel="stylesheet" />
 	{{-- <link rel="stylesheet" href="http://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css"> --}}
 
 	{{-- <script src="{{ asset('js/jquery-1.10.2.js')}}" type="text/javascript"></script> --}}
 	{{-- <script src="{{ asset('js/bootstrap.js')}}" type="text/javascript"></script> --}}
 	<script src="{{ asset('js/login-register.js')}}" type="text/javascript"></script>
-
+    <script src="https://apis.google.com/js/platform.js" async defer></script>
     <div class="container">
         <div class="row">
 		 <div class="modal fade login" id="loginModal">

@@ -24,6 +24,12 @@ class ViewController extends Controller
 
         return view('index', compact('data'));
     }
+    public function about(){
+        return view('about');
+    }
+    public function blog(){
+        return view('blog');
+    }
     public function register(){
         return view('auth.register_page');
     }
@@ -57,8 +63,11 @@ class ViewController extends Controller
         $user = Auth::user();
         $chats = $user->chats;
         // dd($chats);
-        return view('chat.chat', ['chats' => $chats,
+        return view('layouts.errors.404', ['chats' => $chats,
                                   'active_link' => 'chats']);
+    }
+    public function adminpanel(){
+        return view('profile.admin.index', ['acrive_link' => 'adminpanel']);
     }
 
    

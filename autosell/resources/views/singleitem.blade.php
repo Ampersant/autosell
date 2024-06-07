@@ -12,13 +12,11 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
 
     <title>Document</title>
-    <style>
-      
-    </style>
+
 </head>
 <body>
   @include('layouts.loader')
-    @include('layouts.header')
+  @include('layouts.header')
     <div id="content" class="container mt-5 mb-5">
       <div class="row d-flex justify-content-center">
           <div class="col-md-10">
@@ -26,7 +24,7 @@
                   <div class="row">
                       <div class="col-md-6">
                           {{-- <div class="images p-3"> --}}
-                            <div id="carouselExampleIndicators" class="carousel slide">
+                            <div id="carouselExampleIndicators" class="carousel slide m-2">
                               <div class="carousel-indicators">
                                 @for($i = 0; $i < count($item->image); $i++)
                                   @if ($i == 0)
@@ -77,16 +75,29 @@
                                   </div>
                               </div>
                                 <h5 class="text-uppercase">Color: </h5><span class="dot" style="background-color: {{$item->color->name}}"></span>
-                              <h5 class="text-uppercase">Description: </h5><p class="about">{{$item->description}}</p>
+                              <h5 class="text-uppercase">Description: </h5>
                               {{-- accordion --}}
                               <div class="accordion" id="accordionExample">
                                 <div class="accordion-item">
                                   <h2 class="accordion-header">
                                     <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
-                                      Tech data
+                                      Description
                                     </button>
                                   </h2>
                                   <div id="collapseOne" class="accordion-collapse collapse show" data-bs-parent="#accordionExample">
+                                    <div class="accordion-body">
+                                      <ul>
+                                        <p class="about">{{$item->description}}</p>
+                                      </ul> 
+                                  </div>
+                                </div>
+                                <div class="accordion-item">
+                                  <h2 class="accordion-header">
+                                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                                      Tech data
+                                    </button>
+                                  </h2>
+                                  <div id="collapseTwo" class="accordion-collapse collapse" data-bs-parent="#accordionExample">
                                     <div class="accordion-body">
                                       <ul>
    
@@ -99,11 +110,11 @@
                                 </div>
                                 <div class="accordion-item">
                                   <h2 class="accordion-header">
-                                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
                                       Auto history
                                     </button>
                                   </h2>
-                                  <div id="collapseTwo" class="accordion-collapse collapse" data-bs-parent="#accordionExample">
+                                  <div id="collapseThree" class="accordion-collapse collapse" data-bs-parent="#accordionExample">
                                     <div class="accordion-body">
                                       <ul>
                                         <li>Mileage: {{$item->autohistory->mileage}}</li>
@@ -115,11 +126,11 @@
                                 </div>
                                 <div class="accordion-item">
                                   <h2 class="accordion-header">
-                                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+                                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseFour" aria-expanded="false" aria-controls="collapseFour">
                                       Fuel and consumption
                                     </button>
                                   </h2>
-                                  <div id="collapseThree" class="accordion-collapse collapse" data-bs-parent="#accordionExample">
+                                  <div id="collapseFour" class="accordion-collapse collapse" data-bs-parent="#accordionExample">
                                     <div class="accordion-body">
                                       <ul>
                                         
