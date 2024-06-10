@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\AutoController;
 use App\Http\Controllers\ViewController;
+use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\ChatController;
 use App\Http\Controllers\AuthViewController;
 use App\Http\Controllers\ImageController;
@@ -29,7 +30,12 @@ Route::middleware(['auth'])->group(function () {
 //toauth
 Route::get('/register', [ViewController::class, 'register'])->name('register.show');
 Route::get('/login', [ViewController::class, 'login'])->name('login.show');
-// 
+// GoogleAuth
+Route::get('auth/google', [LoginController::class, 'redirectToGoogle']);
+Route::get('auth/google/callback', [LoginController::class, 'handleGoogleCallback']);
+//GitHubAuth
+Route::get('auth/github', [LoginController::class, 'redirectToGitHub']);
+Route::get('auth/github/callback', [LoginController::class, 'handleGitHubCallback']);
 
 
   
